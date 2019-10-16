@@ -5,30 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
 
 namespace OOPFirst
 {   
     
     public enum AgeCategory : byte { SmallChild = 1, Child, Teen, Adult, Pensioner };
-
+    [DataContract]
     [Serializable, XmlRoot("Passenger")]
     public class Passenger
-    {   [XmlElement("firstname")]
-        String firstName { get; set; }
+
+    {
+        [DataMember]
+        [XmlElement("firstname")]
+       public String firstName { get; set; }
+        [DataMember]
         [XmlElement("lastName")]
-        String lastName { get; set; }
+        public String lastName { get; set; }
+        [DataMember]
         [XmlElement("secondName")]
-        String secondName { get; set; }
+        public String secondName { get; set; }
         [XmlElement("pasportSeria")]
-        short pasportSeria { get; set; }
+        [DataMember]
+        public short pasportSeria { get; set; }
+        [DataMember]
         [XmlElement("pasportNum")]
-        int pasportNum { get; set; }
+        public int pasportNum { get; set; }
+        [DataMember]
         [XmlElement("sex")]
-        bool sex { get; set; }
+        public bool sex { get; set; }
+        [DataMember]
         [XmlElement("AgeCategory")]
-        AgeCategory ageCategory { get; set; }
+        public AgeCategory ageCategory { get; set; }
+        [DataMember]
         [XmlElement("dateOfBirthDay")]
-        DateTime dateOfBirthDay { get; set; }
+        public DateTime dateOfBirthDay { get; set; }
 
         public Passenger(string firstName, string lastName, string secondName, short pasportSeria, int pasportNum, bool sex, AgeCategory ageCategory, DateTime dateOfBirthDay)
         {
@@ -45,6 +56,18 @@ namespace OOPFirst
         public Passenger()
         {
         }
+        public static Passenger createFromDataReader(SqlDataReader reader)
+        {
+            return new Passenger(reader.GetString(0),
+                                                     reader.GetString(1),
+                                                     reader.GetString(2),
+                                                     reader.GetInt16(4),
+                                                     reader.GetInt16(5),
+                                                     reader.GetBoolean(6),
+                                                     reader.GetFieldValue<AgeCategory>(7),
+                                                     reader.GetDateTime(8));
+        }
+        
 
         public override string ToString()
         {
@@ -65,5 +88,7 @@ namespace OOPFirst
                                  this.ageCategory,
                                  this.dateOfBirthDay);
         }
+
+        
     }
 }

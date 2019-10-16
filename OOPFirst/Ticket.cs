@@ -1,20 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OOPFirst
-{
+
+{  
     public class Ticket
-    {
-        String flightNumber;
-        long ticketNumber;
+    {  
+       String flightNumber;
+      
+       long ticketNumber;
+        
         DateTime dateFlight;
+       
         DateTime dateIncome;
+      
         DateTime dateArrival;
+      
         short seatNum;
         Passenger passenger;
+
+        public Ticket()
+        {
+        }
 
         public Ticket(string flightNumber, long ticketNumber, DateTime dateFlight, DateTime dateIncome, DateTime dateArrival, short seatNum, Passenger passenger)
         {

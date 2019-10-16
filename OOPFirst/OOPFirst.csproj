@@ -58,11 +58,13 @@
     <Compile Include="Fligh.cs" />
     <Compile Include="IDrescoded.cs" />
     <Compile Include="IKeyKeeper.cs" />
+    <Compile Include="Jsonworker.cs" />
     <Compile Include="Kassa.cs" />
     <Compile Include="LugKeeper.cs" />
     <Compile Include="LugMover.cs" />
     <Compile Include="LugTransporter.cs" />
     <Compile Include="Passenger.cs" />
+    <Compile Include="PassengerDAO.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
